@@ -6,13 +6,17 @@ import string
 import openpyxl
 from openpyxl import Workbook
 from openpyxl.styles import *
+import sys
 
-# Enter your input Excel link here
-employees = pd.read_excel(r'/Users/branan/Desktop/ScheduleProject.xlsx', 'Employees').to_dict('records')
-Positions = pd.read_excel(r'/Users/branan/Desktop/ScheduleProject.xlsx', 'Positions and Shifts')
-TimeOff = pd.read_excel(r'/Users/branan/Desktop/ScheduleProject.xlsx', 'Time off requests').to_dict('records')
-Attendance = pd.read_excel(r'/Users/branan/Desktop/ScheduleProject.xlsx', 'Attendance').to_dict('records')
-WeeklyInfo = pd.read_excel(r'/Users/branan/Desktop/ScheduleProject.xlsx', 'Weekly Info')
+# Get the input file path from the command-line argument
+input_file = sys.argv[1]
+
+# Use the input file path in your read_excel calls
+employees = pd.read_excel(input_file, 'Employees').to_dict('records')
+Positions = pd.read_excel(input_file, 'Positions and Shifts')
+TimeOff = pd.read_excel(input_file, 'Time off requests').to_dict('records')
+Attendance = pd.read_excel(input_file, 'Attendance').to_dict('records')
+WeeklyInfo = pd.read_excel(input_file, 'Weekly Info')
 
 # Manager Parameters
 
