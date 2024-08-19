@@ -32,34 +32,30 @@
             margin-top: 10px;
             font-weight: bold;
         }
-        input[type="file"] {
-            display: none;
-        }
     </style>
 </head>
 <body>
     <div class="container">
+        <!-- Download the Excel template -->
         <div class="button">
             <a href="ScheduleInputData.xlsx" download>
                 <img src="https://img.icons8.com/color/144/000000/microsoft-excel-2019.png" alt="Download Excel">
                 <label>Download Input File</label>
             </a>
         </div>
+
+        <!-- Instructions for triggering the GitHub Action -->
         <div class="button">
-            <form id="upload-form" action="https://your-backend-server.com/upload" method="POST" enctype="multipart/form-data">
-                <input type="file" id="file-input" name="file" accept=".xlsx">
-                <label for="file-input">
-                    <img src="https://img.icons8.com/color/144/000000/upload.png" alt="Upload and Run">
-                </label>
-                <label>Upload Input, Run Algorithm, and Download</label>
-            </form>
+            <label>
+                <img src="https://img.icons8.com/color/144/000000/upload.png" alt="Upload and Run">
+            </label>
+            <label>1. Upload Your File to the Repository</label>
+            <label>2. Trigger the GitHub Action</label>
+            <label>3. Download the Output</label>
+            <p>
+                <a href="https://github.com/your-username/your-repo/actions">Trigger Action</a>
+            </p>
         </div>
     </div>
-
-    <script>
-        document.getElementById('file-input').addEventListener('change', function () {
-            document.getElementById('upload-form').submit();
-        });
-    </script>
 </body>
 </html>
