@@ -32,6 +32,13 @@
             margin-top: 10px;
             font-weight: bold;
         }
+        a {
+            text-decoration: none;
+            color: blue;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -44,17 +51,15 @@
             </a>
         </div>
 
-        <!-- Instructions for triggering the GitHub Action -->
+        <!-- Instructions for Uploading File and Triggering the GitHub Action -->
         <div class="button">
             <label>
                 <img src="https://img.icons8.com/color/144/000000/upload.png" alt="Upload and Run">
             </label>
             <label>1. Upload Your File to the Repository</label>
-            <label>2. Trigger the GitHub Action</label>
-            <label>3. Download the Output</label>
-            <p>
-                <a href="https://github.com/your-username/your-repo/actions">Trigger Action</a>
-            </p>
+            <a href="https://github.com/brananharrison/EmployeeScheduler/upload/main/uploads" target="_blank">Upload File</a>
+            <label>2. Go to the <a href="https://github.com/brananharrison/EmployeeScheduler/actions" target="_blank">GitHub Actions</a> tab to monitor the progress.</label>
+            <label>3. Download the Exported File from the Artifacts section.</label>
         </div>
     </div>
 </body>
