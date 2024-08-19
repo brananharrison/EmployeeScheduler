@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 600px;
+        }
+        .button {
+            text-align: center;
+            cursor: pointer;
+        }
+        .button img {
+            width: 100px;
+            height: 100px;
+        }
+        .button label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        input[type="file"] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="button">
+            <a href="ScheduleInputData.xlsx" download>
+                <img src="https://img.icons8.com/color/144/000000/microsoft-excel-2019.png" alt="Download Excel">
+                <label>Download Input File</label>
+            </a>
+        </div>
+        <div class="button">
+            <form id="upload-form" action="https://your-backend-server.com/upload" method="POST" enctype="multipart/form-data">
+                <input type="file" id="file-input" name="file" accept=".xlsx">
+                <label for="file-input">
+                    <img src="https://img.icons8.com/color/144/000000/upload.png" alt="Upload and Run">
+                </label>
+                <label>Upload Input, Run Algorithm, and Download</label>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('file-input').addEventListener('change', function () {
+            document.getElementById('upload-form').submit();
+        });
+    </script>
+</body>
+</html>
