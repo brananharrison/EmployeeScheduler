@@ -2,7 +2,6 @@ import pandas as pd
 from datetime import datetime, timedelta as time_delta
 from random import random, choice
 import math
-import pprint
 import string
 import openpyxl
 from openpyxl import Workbook
