@@ -15,13 +15,15 @@
         }
         .container {
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
+            justify-content: center;
             align-items: center;
             width: 600px;
         }
         .button {
             text-align: center;
             cursor: pointer;
+            margin: 20px;
         }
         .button img {
             width: 100px;
@@ -32,12 +34,12 @@
             margin-top: 10px;
             font-weight: bold;
         }
-        a {
-            text-decoration: none;
-            color: blue;
+        input[type="file"] {
+            display: none;
         }
-        a:hover {
-            text-decoration: underline;
+        #status {
+            margin-top: 20px;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -51,16 +53,48 @@
             </a>
         </div>
 
-        <!-- Instructions for Uploading File and Triggering the GitHub Action -->
+        <!-- Upload File and Trigger Action -->
         <div class="button">
-            <label>
+            <label for="file-input">
                 <img src="https://img.icons8.com/color/144/000000/upload.png" alt="Upload and Run">
+                <input type="file" id="file-input" name="file" accept=".xlsx">
             </label>
-            <label>1. Upload Your File to the Repository</label>
-            <a href="https://github.com/brananharrison/EmployeeScheduler/upload/main/uploads" target="_blank">Upload File</a>
-            <label>2. Go to the <a href="https://github.com/brananharrison/EmployeeScheduler/actions" target="_blank">GitHub Actions</a> tab to monitor the progress.</label>
-            <label>3. Download the Exported File from the Artifacts section.</label>
+            <label>Upload Your File, Run Algorithm, and Download</label>
         </div>
+
+        <!-- Status Message -->
+        <div id="status"></div>
     </div>
+
+    <script>
+        document.getElementById('file-input').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const formData = new FormData();
+                formData.append('file', file);
+
+                // Fake status message for demonstration purposes
+                document.getElementById('status').textContent = 'Uploading...';
+
+                // Simulate uploading and triggering the action
+                setTimeout(() => {
+                    document.getElementById('status').textContent = 'Processing... Please wait.';
+
+                    // Simulate processing delay
+                    setTimeout(() => {
+                        document.getElementById('status').textContent = 'Processing complete. Downloading...';
+
+                        // Simulate download
+                        const link = document.createElement('a');
+                        link.href = 'path-to-your-generated-export.xlsx'; // Replace with the actual URL to the generated file
+                        link.download = 'Export.xlsx';
+                        link.click();
+
+                        document.getElementById('status').textContent = 'Download complete.';
+                    }, 5000); // Adjust time as needed
+                }, 2000); // Adjust time as needed
+            }
+        });
+    </script>
 </body>
 </html>
