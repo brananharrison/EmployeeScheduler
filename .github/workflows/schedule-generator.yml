@@ -27,4 +27,3 @@ jobs:
       with:
         name: schedule-output
         path: Export.xlsx
-
