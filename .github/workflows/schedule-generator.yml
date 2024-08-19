@@ -1,1 +1,30 @@
+name: Run Scheduling Algorithm
+
+on:
+  workflow_dispatch:
+
+jobs:
+  run_schedule:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: pip install -r requirements.txt
+
+    - name: Run scheduling script
+      run: python main.py path-to-uploaded-file.xlsx
+
+    - name: Upload output
+      uses: actions/upload-artifact@v2
+      with:
+        name: schedule-output
+        path: Export.xlsx
 
