@@ -1,7 +1,9 @@
 name: Run Scheduling Algorithm
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - uploads
 
 jobs:
   run_schedule:
