@@ -3,7 +3,7 @@ name: Run Scheduling Algorithm
 on:
   push:
     branches:
-      - uploads  # The branch where the user-uploaded file is pushed
+      - master  # Trigger on pushes to the master branch
 
 jobs:
   run_schedule:
@@ -24,16 +24,9 @@ jobs:
     - name: Run scheduling script
       run: python main.py path-to-uploaded-file.xlsx
 
-    - name: Checkout the master branch
-      run: |
-        git fetch origin
-        git checkout -B master origin/master
-
-    - name: Move the Generated File
-      run: mv Export.xlsx Export.xlsx  # Ensure this is moving to the root
-
     - name: Commit and Push the Generated File
       run: |
+        mv Export.xlsx Export.xlsx  # Move it to the root directory
         git add Export.xlsx
         git commit -m "Add generated Export.xlsx to root directory"
         git push origin master  # Push to the master branch
