@@ -119,7 +119,7 @@ Now that we have 3 measures, **attendance, assigned hours proportion,** and **se
 ## Probabilistic Assignments
 Since seniority and attendance are metrics calculated over a large time window, they are unlikely to change much over time. To avoid schedules feelign stagnant or certain employees being stuck with undesireable shifts, I've employed a probabilistic approach to keep things interesting. To keep things simple for now, let's refer to an employee's "comparison score" to be any of the 3 scores we defined above (attendance, assigned hours proportion, and seniority).
 
-Let {X<sub>1</sub>, X<sub>2</sub>} be 2 employees' comparison scores on the interval [0,1]. Without loss of generality, suppose X<sub>1</sub> > X<sub>2</sub>. Define Z = 5*(X<sub>1</sub> - X<sub>2</sub> ) as the difference between the scores with a coefficient of 5 in preparation for a composition with the sigmoid function. A higher coefficient would result in more skew towards the leader, while a lower would do the opposite, however I think 5 is a fair trade-off. Finally we utilize the function below to decide the probability of the leader being chosen. A greater difference in comparison score will yield a higher probability of the leader being chosen.
+Let {X<sub>1</sub>, X<sub>2</sub>} be 2 employees' comparison scores on the interval [0,1]. Without loss of generality, suppose X<sub>1</sub> > X<sub>2</sub>. Define Z = 5*(X<sub>1</sub> - X<sub>2</sub> ) as the difference between the scores with a coefficient of 5 in preparation for a composition with the sigmoid function. A higher coefficient would result in more skew towards the leader, while a lower would do the opposite, however I think 5 is a fair trade-off. Finally we utilize the function below to decide the probability of the favored employee being chosen. A greater difference in comparison score will yield a higher probability of the leader being chosen.
 
 ![Img6](https://github.com/brananharrison/EmployeeScheduler/blob/master/img/sched6.png)
 
@@ -127,11 +127,11 @@ For example: if $X_1 = 0.9$ and $X_2 = 0.4$, then:
 
 $$\theta(z) = \frac{1}{1 + e^{-2.25}} = 0.9046$$
 
-This means the favored employee has a 90% chance of being selected.
+implies the favored employee has a 90% chance of being selected.
 
 Another example: if $X_1 = 0.5$ and $X_2 = 0.3$, then:
 
 $$\theta(z) = \frac{1}{1 + e^{-0.75}} = 0.6792$$
 
-This means the favored employee has a 68% chance of being selected.
+implies the favored employee has a 68% chance of being selected.
 
