@@ -11,7 +11,9 @@ On behalf of all variable-schedule employees and in protest of most mid-level ma
 
 ## How it works
 
-Within the Input Excel document, we find our Employees sheet, containing data about each employee. Most data points are fixed by the manager at the hire date, such as eligible shifts/positions and availability. However, columns labeled 'Desired' are able to be edited by respective employees at any time, giving employees some autonomy in how their week is scheduled.
+Within the Input Excel document, we find our Employees sheet containing data about each employee. Most data points are fixed by the manager at the hire date, such as eligible shifts/positions and availability. However, columns labeled 'Desired' are able to be edited by respective employees at any time, giving employees some autonomy in how their week is scheduled.
+
+![img1](https://github.com/brananharrison/img/sched1.png/)
 
 
 
