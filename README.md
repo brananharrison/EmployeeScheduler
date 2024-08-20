@@ -140,9 +140,9 @@ implies the favored employee has a 68% chance of being selected.  <br><br>
 Now that our weighted probability function is built, we can decide which measures should be used to decide tiebreakers in each iteration category. Each of the 5 iteration categories are assigned a measure distribution (ex: 70% seniority and 30% attendance are considered). Max/Min are listed to denote which extrema is skewed towards being assigned the shift. This is necessary since some shifts are desirable and others are not.
 
 #### Recall the 3 metrics:
-**Attendance [0,1]**, where 1 is best attendance
-**Assigned Hours Proportion (0,1]**, where 1 is greatest ratio: assigned hours / min desired hours
-**Seniority (0,1]**, where 1 has the most seniority
+**Attendance [0,1]**, where 1 is best attendance <br>
+**Assigned Hours Proportion (0,1]**, where 1 is greatest ratio: assigned hours / min desired hours <br>
+**Seniority (0,1]**, where 1 has the most seniority <br>
 
 1. (Max: 70% Seniority, 30% Attendance) Employee is eligible, prefers the shift/position, has not requested off, and MaxD, MaxH > 0
 2. (Min: Assigned Hours Proportion) Employee is eligible, does not prefer off, has not requested off, and MaxD, MaxH >= 0
