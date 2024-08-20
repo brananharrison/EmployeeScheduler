@@ -38,22 +38,22 @@ Time-off requests and attendance logs are inputted as well, and contribute to th
 Each employee will have a variety of variables associated with a given shift:
 
 ### Boolean variables:
-**Position Eligibility**: employee is eligible to work that position
-**Shift Eligibility**: employee is eligible to work that shift
-**Available**: the shift is within the employee's availability
-**Prefers Position**: the employee prefers that position for that day of the week
-**Prefers Shift**: the employee prefers that shift for that day of the week
-**Prefers OFF**: the employee prefers not to be scheduled for that day of the week
-**Requested Off**: the assignment of that shift would interfere with a TO request
+**Position Eligibility**: employee is eligible to work that position <br>
+**Shift Eligibility**: employee is eligible to work that shift <br>
+**Available**: the shift is within the employee's availability <br>
+**Prefers Position**: the employee prefers that position for that day of the week <br>
+**Prefers Shift**: the employee prefers that shift for that day of the week <br>
+**Prefers OFF**: the employee prefers not to be scheduled for that day of the week <br>
+**Requested Off**: the assignment of that shift would interfere with a TO request <br>
 ‍
 ### Numerical variables:
-**Max Hours Difference (MaxH)**: the difference between an employee's maximum desired hours and their current scheduled hours calculated INCLUDING the given shift
-**Min Hours Difference (MinH)**: minimum desired hours - scheduled hours
-**Max Days Difference (MaxD)**: max days - scheduled days
-**Min Days Difference (MinD)**: min days - scheduled days
+**Max Hours Difference (MaxH)**: the difference between an employee's maximum desired hours and their current scheduled hours calculated INCLUDING the given shift <br>
+**Min Hours Difference (MinH)**: minimum desired hours - scheduled hours <br>
+**Max Days Difference (MaxD)**: max days - scheduled days <br>
+**Min Days Difference (MinD)**: min days - scheduled days <br>
 
 ### Categorical variables:
-**Request type**: if an employee requests time off it will either be (Approved) or (If possible)
+**Request type**: if an employee requests time off it will either be (Approved) or (If possible) <br>
 
 
 ### Test
