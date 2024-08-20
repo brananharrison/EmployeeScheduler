@@ -76,7 +76,7 @@
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                        ref: 'master',
+                        ref: 'master',  // Ensure this matches your branch name
                         inputs: {
                             'file-content': content
                         }
@@ -86,8 +86,9 @@
                 if (response.ok) {
                     alert('File uploaded successfully! The workflow should now trigger.');
                 } else {
-                    alert('Failed to upload the file.');
-                    console.error(await response.json());
+                    const errorDetails = await response.json();
+                    console.error(errorDetails);
+                    alert(`Failed to upload the file. Error: ${errorDetails.message}`);
                 }
             };
 
