@@ -162,7 +162,6 @@ The resulting Excel document is a sleek, readable schedule containing each emplo
 - Algorithm optimizes preferred shifts relative to attendance and seniority
 - Employees can update preferred shifts and hours at any time
 - Managers can edit staff needs for each individual shift/day combination
-- Managers can modify parameter weights to adjust balance (sigmoid coefficient, metric assignment distribution, attendance score distribution, etc.)
 - Probabilistic assignments ensure unique schedules are made each week
 - Employees will never be scheduled outside of their availability
 - Employees will never be scheduled if they have an approved time off request
