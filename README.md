@@ -89,15 +89,19 @@ The result is a robust measurement of an employee's character on the interval [0
 
 In addition to the attendance score, the second consideration is the **assigned hours proportion**. This is a proportion created from the current assigned hours / minimum desired hours.
 
-
-
-
-
-
-
-### Test
 ```python
-def greet(name):
-    return f"Hello, {name}!"
-
-print(greet('Branan'))
+for employee in employees:
+    if employee['Name'] in preferred_list:
+        if employee['Min Desired Hours'] != 0:
+            if employee['Hours assigned'] / employee['Min Desired Hours'] > largest_proportion:
+                largest_proportion = employee['Hours assigned'] / employee['Min Desired Hours']
+for employee in employees:
+    if employee['Name'] in preferred_list:
+        if employee['Min Desired Hours'] == 0:
+            comparison_score = 0.01
+        else:
+            comparison_score = (employee['Hours assigned'] / employee[
+                'Min Desired Hours']) / largest_proportion
+        comparison_list.append((employee['Name'], comparison_score))
+winner = min_score(comparison_list)
+```
