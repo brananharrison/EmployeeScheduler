@@ -3,7 +3,7 @@ name: Run Scheduling Algorithm
 on:
   push:
     branches:
-      - master  # Trigger on pushes to the master branch
+      - uploads  # Trigger on pushes to the uploads branch
 
 permissions:
   contents: write  # Grant write access to repository contents
@@ -24,8 +24,8 @@ jobs:
     - name: Install dependencies
       run: pip install -r requirements.txt
 
-    - name: Run scheduling script
-      run: python main.py path-to-uploaded-file.xlsx
+    - name: Run scheduling script using uploaded file
+      run: python main.py path-to-uploaded-file.xlsx  # Update this line to use the file uploaded by the user
 
     - name: Configure Git
       run: |
