@@ -18,15 +18,15 @@
         .container {
             display: flex;
             justify-content: space-between;
-            align-items: flex-start; /* Align icons to the top */
-            width: 650px; /* Adjusted width for better spacing */
+            align-items: center;
+            width: 600px;
         }
         .button {
             display: inline-block;
             cursor: pointer;
             border-radius: 8px;
+            vertical-align: middle;
             text-align: center;
-            width: 48%; /* Adjusted width for consistent spacing */
         }
         .button img {
             width: 100px;
@@ -36,7 +36,7 @@
             transition: background-color 0.3s ease, border-radius 0.3s ease;
             border-radius: 8px;
             padding: 0;
-            margin-bottom: 10px;
+            margin-bottom: 10px; /* Ensures consistent spacing */
         }
         .button:hover img {
             background-color: #ccffcc;
@@ -55,19 +55,12 @@
             cursor: pointer;
         }
         .message {
-            margin-top: 50px;
+            margin-top: 50px; /* Increased margin to create more space */
             font-size: 16px;
             font-weight: bold;
             color: green;
             text-align: center;
-            width: 100%;
-        }
-        .upload-label {
-            display: block;
-            width: 180px; /* Adjusted width to control text wrapping */
-            text-align: center;
-            margin: 0 auto;
-            line-height: 1.4; /* Adjusted line height for better spacing */
+            width: 100%; /* Take up the full width */
         }
     </style>
 </head>
@@ -79,20 +72,15 @@
             </a>
             <label>Download Input File</label>
         </div>
-        <div class="button">
-            <label for="file-input" class="upload-icon">
-                <img src="https://img.icons8.com/color/144/000000/upload.png" alt="Upload and Run">
-                <input type="file" id="file-input" name="file" accept=".xlsx">
-            </label>
-            <label class="upload-label">
-                Upload Input.xlsx, run algorithm, and download schedule.
-            </label>
-        </div>
+    <div class="button" style="margin-right: 40px;">
+        <label for="file-input" class="upload-icon">
+            <img src="https://img.icons8.com/color/144/000000/upload.png" alt="Upload and Run">
+            <input type="file" id="file-input" name="file" accept=".xlsx">
+        </label>
+        <label style="display: block; width: 200px; text-align: center; margin: 0 auto;">
+            Upload Input.xlsx, run algorithm, and download schedule.
+        </label>
     </div>
-    <div class="message">
-        <!-- Status message will be displayed here -->
-    </div>
-</body>
     
     <div class="message" id="status-message"></div> <!-- Message area -->
 
