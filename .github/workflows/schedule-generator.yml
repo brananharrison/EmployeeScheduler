@@ -3,7 +3,7 @@ name: Run Scheduling Algorithm
 on:
   push:
     branches:
-      - uploads  # Trigger on pushes to the uploads branch
+      - master  # Assume the file is pushed to the master branch for simplicity
 
 permissions:
   contents: write  # Grant write access to repository contents
@@ -24,8 +24,14 @@ jobs:
     - name: Install dependencies
       run: pip install -r requirements.txt
 
-    - name: Run scheduling script using uploaded file
-      run: python main.py path-to-uploaded-file.xlsx  # Update this line to use the file uploaded by the user
+    - name: Find the uploaded file
+      id: find_file
+      run: |
+        FILE=$(find . -name "*.xlsx" | head -n 1)
+        echo "FILE_PATH=$FILE" >> $GITHUB_ENV
+
+    - name: Run scheduling script using the uploaded file
+      run: python main.py ${{ env.FILE_PATH }}
 
     - name: Configure Git
       run: |
