@@ -3,7 +3,7 @@ name: Run Scheduling Algorithm
 on:
   push:
     branches:
-      - uploads
+      - uploads  # The branch where the user-uploaded file is pushed
 
 jobs:
   run_schedule:
@@ -28,7 +28,8 @@ jobs:
       run: |
         git config --global user.email "you@example.com"
         git config --global user.name "Your Name"
-        mv Export.xlsx path/to/your/gh-pages-directory/Export.xlsx
-        git add path/to/your/gh-pages-directory/Export.xlsx
+        git checkout -b gh-pages
+        mv Export.xlsx Export.xlsx  # Move it to the root directory
+        git add Export.xlsx
         git commit -m "Add generated Export.xlsx"
-        git push origin main
+        git push origin gh-pages --force  # Force push to update gh-pages
