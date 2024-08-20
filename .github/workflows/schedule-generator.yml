@@ -13,15 +13,6 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Delete old Input.xlsx and Export.xlsx if they exist
-      run: |
-        if [ -f Input.xlsx ]; then
-          rm Input.xlsx
-        fi
-        if [ -f Export.xlsx ]; then
-          rm Export.xlsx
-        fi
-
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
@@ -37,4 +28,22 @@ jobs:
       run: |
         git add Export.xlsx
         git commit -m "Add new generated Export.xlsx"
+        git push origin master
+
+    - name: Wait before deleting files
+      run: sleep 60  # Wait for a short time before deleting the files
+
+    - name: Delete Input.xlsx and Export.xlsx
+      run: |
+        if [ -f Input.xlsx ]; then
+          rm Input.xlsx
+        fi
+        if [ -f Export.xlsx ]; then
+          rm Export.xlsx
+        fi
+
+    - name: Commit Deletion
+      run: |
+        git add -u
+        git commit -m "Delete Input.xlsx and Export.xlsx after processing"
         git push origin master
