@@ -117,7 +117,7 @@ Seniority is calculated simply by an employee's duration of hire / the most seni
 Now that we have 3 measures, **attendance, assigned hours proportion,** and **seniority**, we can use these to choose the ideal assignment in the event of a tiebreaker calculation. <br><br>
 
 ## Probabilistic Assignments
-Since seniority and attendance are metrics calculated over a large time window, they are unlikely to change much over time. To avoid schedules feelign stagnant or certain employees being stuck with undesireable shifts, I've employed a probabilistic approach to keep things interesting. To keep things simple for now, let's refer to an employee's "comparison score" to be any of the 3 scores we defined above (attendance, assigned hours proportion, and seniority).
+Since seniority and attendance are metrics calculated over a large time window, they are unlikely to change much over time. To avoid schedules feelign stagnant or certain employees being stuck with undesirable shifts, I've employed a probabilistic approach to keep things interesting. To keep things simple for now, let's refer to an employee's "comparison score" to be any of the 3 scores we defined above (attendance, assigned hours proportion, and seniority).
 
 Let {X<sub>1</sub>, X<sub>2</sub>} be 2 employees' comparison scores on the interval [0,1]. Without loss of generality, suppose X<sub>1</sub> > X<sub>2</sub>. Define Z = 5*(X<sub>1</sub> - X<sub>2</sub> ) as the difference between the scores with a coefficient of 5 in preparation for a composition with the sigmoid function. A higher coefficient would result in more skew towards the leader, while a lower would do the opposite, however I think 5 is a fair trade-off. Finally we utilize the function below to decide the probability of the favored employee being chosen. A greater difference in comparison score will yield a higher probability of the leader being chosen.
 
@@ -127,11 +127,26 @@ For example: if $X_1 = 0.9$ and $X_2 = 0.4$, then:
 
 $$\theta(z) = \frac{1}{1 + e^{-2.25}} = 0.9046$$
 
-implies the favored employee has a 90% chance of being selected.
+implies the favored employee has a 90% chance of being selected. <br><br>
 
 Another example: if $X_1 = 0.5$ and $X_2 = 0.3$, then:
 
 $$\theta(z) = \frac{1}{1 + e^{-0.75}} = 0.6792$$
 
-implies the favored employee has a 68% chance of being selected.
+implies the favored employee has a 68% chance of being selected.  <br><br>
+
+## Assignments
+
+Now that our weighted probability function is built, we can decide which measures should be used to decide tiebreakers in each iteration category. Each of the 5 iteration categories are assigned a measure distribution (ex: 70% seniority and 30% attendance are considered). Max/Min are listed to denote which extrema is skewed towards being assigned the shift. This is necessary since some shifts are desirable and others are not.
+
+#### Recall the 3 metrics:
+**Attendance [0,1]**, where 1 is best attendance
+**Assigned Hours Proportion (0,1]**, where 1 is greatest ratio: assigned hours / min desired hours
+**Seniority (0,1]**, where 1 has the most seniority
+
+1. (Max: 70% Seniority, 30% Attendance) Employee is eligible, prefers the shift/position, has not requested off, and MaxD, MaxH > 0
+2. (Min: Assigned Hours Proportion) Employee is eligible, does not prefer off, has not requested off, and MaxD, MaxH >= 0
+3. (Min: Assigned Hours Proportion) Employee is eligible, prefers off, has not requested off, and MaxD, MaxH >= 0
+4. (Min: Assigned Hours Proportion) Employee is eligible, does not prefer shift/position, has not requested off, MaxD > 0, and MaxH > -5
+5. (Min: 70% Attendance, 30% Seniority) Employee is eligible, has requested off with request type (if possible), and MaxD, MaxH >= 0
 
