@@ -25,15 +25,17 @@ jobs:
       run: pip install -r requirements.txt
 
     - name: Check for Input.xlsx file
+      continue-on-error: true  # Do not fail the job if the file is not found
       run: |
         if [ ! -f "Input.xlsx" ]; then
-          echo "File Input.xlsx not found. Exiting workflow."
-          exit 0  # Exit the workflow safely if the specific file is not found
+          echo "File Input.xlsx not found. Exiting workflow gracefully."
+          exit 0  # Exit the workflow gracefully if the specific file is not found
         else
           echo "Found file: Input.xlsx"
         fi
 
     - name: Delete old Export.xlsx file if it exists
+      if: success()  # Only run this step if the previous steps were successful
       run: |
         if [ -f Export.xlsx ]; then
           rm Export.xlsx
@@ -41,18 +43,22 @@ jobs:
         fi
 
     - name: Run scheduling script using Input.xlsx
+      if: success()  # Only run this step if the previous steps were successful
       run: python main.py "Input.xlsx"
 
     - name: Configure Git
+      if: success()  # Only run this step if the previous steps were successful
       run: |
         git config --local user.email "github-actions@github.com"
         git config --local user.name "GitHub Actions"
 
     - name: Commit and Push the New Generated File
+      if: success()  # Only run this step if the previous steps were successful
       run: |
         git add Export.xlsx
         git commit -m "Add new generated Export.xlsx to root directory"
         git push origin master  # Push to the master branch
 
     - name: Verify file exists
+      if: success()  # Only run this step if the previous steps were successful
       run: ls -la Export.xlsx
