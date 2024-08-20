@@ -61,31 +61,36 @@ Each employee will have a variety of variables associated with a given shift:
 Since the algorithm respects shift and hours preference, I chose these 5 categories of variable combinations. The first category contains the ideal case, where an employee prefers the shift, while the fifth contains the least ideal case, where an employee requested off for that day. Part of the optimization of this algorithm lies in the choices of these categories:
 
 1. Employee is eligible, prefers the shift/position, has not requested off, and MaxD, MaxH > 0
-
 2. Employee is eligible, does not prefer off, has not requested off, and MaxD, MaxH >= 0
-
 3. Employee is eligible, prefers off, has not requested off, and MaxD, MaxH >= 0
-
 4. Employee is eligible, does not prefer the shift/position, has not requested off, MaxD > 0, and MaxH > -5
-
 5. Employee is eligible, has requested off with request type (if possible), and MaxD, MaxH >= 0
-
-
-
-
-### Tiebreaker calculation
-The first component of the tiebreaker calculation is the Attendance Score. This is dependent on the 5 noncompliance categories from the manager's input sheet: No call no show, Inadmissible call-out, Admissible call-out, Write-up behavior, and Late.‍
-
-
-
-
-
 
 The assignment of each shift is done by iterating through each position, shift, and day of the week in order. It will then iterate down the 5 categories of preference until at least one viable employee is found, giving us 3 possible cases:
 
 - If no employees are found it will iterate to the next preference category
 - If one employee is found they are immediately assigned the shift
 - If multiple employees are found a tiebreaker calculation is performed
+
+
+### Tiebreaker calculation
+In the event where more than one employee is eligible for the same shift, the first consideration is the Attendance Score. This is dependent on the 5 attendance categories from the manager's input sheet: No call no show, Inadmissible call-out, Admissible call-out, Write-up behavior, and Late.‍
+
+```
+AttendanceScore = minimum(0, 1 - (
+0.6 * Number of no call no shows
+0.2 * Number of inadmissible call-outs
+0.15 * Number of write-up behaviors
+0.03 * Number of late
+0.02 * Number of admissible call-outs
+))
+```
+
+
+
+
+
+
 
 
 ### Test
