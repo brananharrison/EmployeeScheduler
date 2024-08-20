@@ -123,4 +123,19 @@ Let {X<sub>1</sub>, X<sub>2</sub>} be 2 employees' comparison scores on the inte
 
 ![Img6](https://github.com/brananharrison/EmployeeScheduler/blob/master/img/sched6.png)
 
+For example: if \( X_1 = 0.9 \) and \( X_2 = 0.4 \), then
+
+\[
+\theta(z) = \frac{1}{1 + e^{-2.25}} = 0.9046
+\]
+
+This means the favored employee has a 90\% chance of being selected.
+
+Another example: if \( X_1 = 0.5 \) and \( X_2 = 0.3 \), then
+
+\[
+\theta(z) = \frac{1}{1 + e^{-0.75}} = 0.6792
+\]
+
+This means the favored employee has a 68\% chance of being selected.
 
