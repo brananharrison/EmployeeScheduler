@@ -70,11 +70,10 @@ The assignment of each shift is done by iterating through each position, shift, 
 
 - If no employees are found it will iterate to the next preference category
 - If one employee is found they are immediately assigned the shift
-- If multiple employees are found a tiebreaker calculation is performed
-
+- If multiple employees are found a tiebreaker calculation is performed <br><br>
 
 ### Tiebreaker calculation
-In the event where more than one employee is eligible for the same shift, we must consider 3 seemingly intangible qualities: **attendance, seniority, and balance of shifts**. <br><br>
+In the likely event where more than one employee is eligible for the same shift, we must consider 3 seemingly intangible qualities: **attendance, seniority, and balance of shift assignments**. <br><br>
 
 #### The first consideration is the **Attendance Score**
 This is dependent on the 5 attendance categories from the manager's input sheet: No call no show, Inadmissible call-out, Admissible call-out, Write-up behavior, and Late.‍
@@ -90,7 +89,8 @@ AttendanceScore = minimum(0, 1 - (
 ```
 The result is a robust measurement of an employee's character on the interval [0,1] where 1 is a perfect employee, and 0 is a much less than perfect employee. <br><br>
 
-In addition to the attendance score, the second consideration is the **Assigned Hours Proportion**. This is a proportion created from the current assigned hours / minimum desired hours and it's meant to balance the distribution of shift assignments based on what has already been assigned.
+#### In addition to the attendance score, the second consideration is the **Assigned Hours Proportion**
+This is a proportion created from the current assigned hours / minimum desired hours and it's meant to balance the distribution of shift assignments based on what has already been assigned.
 
 ```python
 for employee in employees:
@@ -111,5 +111,6 @@ winner = min_score(comparison_list)
 
 Notice the comparison score is calculated not just by **(hours assigned) / (min desired hours)**, but by taking that quotient against the largest proportion of the employees in the list. This gives us a special distribution on the continuous interval [0,1], where 1 is always the employee with the largest hours proportion, and proportions less than that are each with respect to that maximum, **effectively normalizing each proportion to a distance from 1 on the interval (0,1]**. <br><br>
 
-The third and final component is **Seniority**, which is calculated simply as an employee's duration of hire / the most senior employee in the comparison pool. Similar to the assigned hours proportion, seniority values lie along the interval (0,1].
+#### The third and final component is **Seniority**
+Seniority is calculated simply by an employee's duration of hire / the most senior employee in the comparison pool. Similar to the assigned hours proportion, seniority values lie along the interval (0,1].
 
