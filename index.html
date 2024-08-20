@@ -8,24 +8,25 @@
         body {
             font-family: Arial, sans-serif;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
             background-color: #f0f0f0;
+            margin: 0;
         }
         .container {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            width: 600px;
+            align-items: flex-start; /* Align icons to the top */
+            width: 650px; /* Adjusted width for better spacing */
         }
         .button {
             display: inline-block;
             cursor: pointer;
             border-radius: 8px;
-            vertical-align: middle;
-            text-align: left; /* Align text to the left */
-            width: 250px; /* Set width to control wrapping */
+            text-align: center;
+            width: 48%; /* Adjusted width for consistent spacing */
         }
         .button img {
             width: 100px;
@@ -35,7 +36,7 @@
             transition: background-color 0.3s ease, border-radius 0.3s ease;
             border-radius: 8px;
             padding: 0;
-            margin-bottom: 10px; /* Ensures consistent spacing */
+            margin-bottom: 10px;
         }
         .button:hover img {
             background-color: #ccffcc;
@@ -45,7 +46,7 @@
             display: block;
             margin: 0;
             font-weight: bold;
-            line-height: 1.5; /* Increase line height to spread out the lines */
+            text-align: center;
         }
         input[type="file"] {
             display: none;
@@ -54,11 +55,19 @@
             cursor: pointer;
         }
         .message {
-            margin-top: 20px;
+            margin-top: 50px;
             font-size: 16px;
             font-weight: bold;
             color: green;
             text-align: center;
+            width: 100%;
+        }
+        .upload-label {
+            display: block;
+            width: 180px; /* Adjusted width to control text wrapping */
+            text-align: center;
+            margin: 0 auto;
+            line-height: 1.4; /* Adjusted line height for better spacing */
         }
     </style>
 </head>
@@ -75,11 +84,16 @@
                 <img src="https://img.icons8.com/color/144/000000/upload.png" alt="Upload and Run">
                 <input type="file" id="file-input" name="file" accept=".xlsx">
             </label>
-            <label>Upload Input.xlsx, run algorithm,<br>and download schedule.</label>
+            <label class="upload-label">
+                Upload Input.xlsx, run algorithm, and download schedule.
+            </label>
         </div>
     </div>
+    <div class="message">
+        <!-- Status message will be displayed here -->
+    </div>
 </body>
-
+    
     <div class="message" id="status-message"></div> <!-- Message area -->
 
     <script>
