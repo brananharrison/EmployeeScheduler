@@ -63,22 +63,18 @@
             reader.onload = async function (e) {
                 const content = e.target.result.split(',')[1]; // Get the base64 part of the result
 
-                // Replace with your personal access token
-                const token = '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';
-                const repo = 'brananharrison/EmployeeScheduler';
-                const path = 'Input.xlsx';
-                const branch = 'master';
-
-                const response = await fetch(`https://api.github.com/repos/${repo}/contents/${path}`, {
-                    method: 'PUT',
+                const response = await fetch('https://api.github.com/repos/brananharrison/EmployeeScheduler/actions/workflows/upload-input.yml/dispatches', {
+                    method: 'POST',
                     headers: {
-                        'Authorization': `Bearer ${token}`,
-                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer YOUR_PERSONAL_ACCESS_TOKEN_HERE`,
+                        'Accept': 'application/vnd.github.v3+json',
+                        'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                        message: 'Upload Input.xlsx via GitHub Pages',
-                        content: content,
-                        branch: branch
+                        ref: 'master',
+                        inputs: {
+                            'file-content': content
+                        }
                     })
                 });
 
