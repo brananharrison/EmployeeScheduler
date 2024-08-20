@@ -25,14 +25,12 @@ The other 3 sheets contain data for the manager to fill out, most importantly, t
 
 ![Img3](https://github.com/brananharrison/EmployeeScheduler/blob/master/img/sched3.png)
 
-<br><br>
+<br>
 Time-off requests and attendance logs are inputted as well, and contribute to the algorithm.
 
 ![Img4](https://github.com/brananharrison/EmployeeScheduler/blob/master/img/sched4.png)
 
-![Img5](https://github.com/brananharrison/EmployeeScheduler/blob/master/img/sched5.png)
-
-<br><br>
+![Img5](https://github.com/brananharrison/EmployeeScheduler/blob/master/img/sched5.png) <br><br>
 
 
 ## The Algorithm
@@ -55,7 +53,39 @@ Each employee will have a variety of variables associated with a given shift:
 **Min Days Difference (MinD)**: min days - scheduled days <br>
 
 ### Categorical variables:
-**Request type**: if an employee requests time off it will either be (Approved) or (If possible) <br>
+**Request type**: if an employee requests time off it will either be (Approved) or (If possible) <br><br>
+
+
+### Initial Scheduling Draft
+
+Since the algorithm respects shift and hours preference, I chose these 5 categories of variable combinations. The first category contains the ideal case, where an employee prefers the shift, while the fifth contains the least ideal case, where an employee requested off for that day. Part of the optimization of this algorithm lies in the choices of these categories:
+
+1. Employee is eligible, prefers the shift/position, has not requested off, and MaxD, MaxH > 0
+
+2. Employee is eligible, does not prefer off, has not requested off, and MaxD, MaxH >= 0
+
+3. Employee is eligible, prefers off, has not requested off, and MaxD, MaxH >= 0
+
+4. Employee is eligible, does not prefer the shift/position, has not requested off, MaxD > 0, and MaxH > -5
+
+5. Employee is eligible, has requested off with request type (if possible), and MaxD, MaxH >= 0
+
+
+
+
+### Tiebreaker calculation
+The first component of the tiebreaker calculation is the Attendance Score. This is dependent on the 5 noncompliance categories from the manager's input sheet: No call no show, Inadmissible call-out, Admissible call-out, Write-up behavior, and Late.‍
+
+
+
+
+
+
+The assignment of each shift is done by iterating through each position, shift, and day of the week in order. It will then iterate down the 5 categories of preference until at least one viable employee is found, giving us 3 possible cases:
+
+- If no employees are found it will iterate to the next preference category
+- If one employee is found they are immediately assigned the shift
+- If multiple employees are found a tiebreaker calculation is performed
 
 
 ### Test
