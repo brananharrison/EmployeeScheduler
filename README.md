@@ -7,7 +7,7 @@ On behalf of all variable-schedule employees and in protest of most mid-level ma
 1) Download the input file
 2) Add each employee and their availability/preferences, positions, shift info, labor needs, time-off requests, and attendance.
 3) Save as Input.xlsx and upload
-4) Polished schedule will download in 1-2 minutes <br><br>
+4) Polished schedule will download in 1-2 minutes <br><br><br>
 
 
 ## How it works
@@ -30,7 +30,7 @@ Time-off requests and attendance logs are inputted as well, and contribute to th
 
 ![Img4](https://github.com/brananharrison/EmployeeScheduler/blob/master/img/sched4.png)
 
-![Img5](https://github.com/brananharrison/EmployeeScheduler/blob/master/img/sched5.png) <br><br>
+![Img5](https://github.com/brananharrison/EmployeeScheduler/blob/master/img/sched5.png) <br><br><br>
 
 
 ## The Algorithm
@@ -114,7 +114,7 @@ Notice the comparison score is calculated not just by **(hours assigned) / (min 
 #### The third and final component is **Seniority**
 Seniority is calculated simply by an employee's duration of hire / the most senior employee in the comparison pool. Similar to the assigned hours proportion, seniority values lie along the interval (0,1]. <br><br>
 
-Now that we have 3 measures, **attendance, assigned hours proportion,** and **seniority**, we can use these to choose the ideal assignment in the event of a tiebreaker calculation. <br><br>
+Now that we have 3 measures, **attendance, assigned hours proportion,** and **seniority**, we can use these to choose the ideal assignment in the event of a tiebreaker calculation. <br><br><br>
 
 ## Probabilistic Assignments
 Since seniority and attendance are metrics calculated over a large time window, they are unlikely to change much over time. To avoid schedules feelign stagnant or certain employees being stuck with undesirable shifts, I've employed a probabilistic approach to keep things interesting. To keep things simple for now, let's refer to an employee's "comparison score" to be any of the 3 scores we defined above (attendance, assigned hours proportion, and seniority).
@@ -133,7 +133,7 @@ Another example: if $X_1 = 0.5$ and $X_2 = 0.3$, then:
 
 $$\theta(z) = \frac{1}{1 + e^{-0.75}} = 0.6792$$
 
-implies the favored employee has a 68% chance of being selected.  <br><br>
+implies the favored employee has a 68% chance of being selected.  <br><br><br>
 
 ## Assignments
 
@@ -156,7 +156,7 @@ Believe it or not, the 5 cases described above form a complete set of possible c
 
 ![Img7](https://github.com/brananharrison/EmployeeScheduler/blob/master/img/sched7.png)
 
-The resulting Excel document is a sleek, readable schedule containing each employee's shifts separated by position.
+The resulting Excel document is a sleek, readable schedule containing each employee's shifts separated by position.<br><br><br>
 
 ## Features of the algorithm:
 - Algorithm optimizes preferred shifts relative to attendance and seniority
