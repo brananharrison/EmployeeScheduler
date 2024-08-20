@@ -114,12 +114,13 @@ Notice the comparison score is calculated not just by **(hours assigned) / (min 
 #### The third and final component is **Seniority**
 Seniority is calculated simply by an employee's duration of hire / the most senior employee in the comparison pool. Similar to the assigned hours proportion, seniority values lie along the interval (0,1]. <br><br>
 
-Now that we have 3 measures, **attendance, assigned hours proportion, and seniority**, we can use these to choose the ideal assignment in the event of a tiebreaker calculation. <br><br>
+Now that we have 3 measures, **attendance, assigned hours proportion,** and **seniority**, we can use these to choose the ideal assignment in the event of a tiebreaker calculation. <br><br>
 
 ## Probabilistic Assignments
-Since seniority and attendance are metrics calculated over a large time window, they are unlikely to change much over time. To avoid schedules feelign stagnant or certain employees being stuck with undesireable shifts, I've employed a probabilistic approach to keep things interesting.
+Since seniority and attendance are metrics calculated over a large time window, they are unlikely to change much over time. To avoid schedules feelign stagnant or certain employees being stuck with undesireable shifts, I've employed a probabilistic approach to keep things interesting. To keep things simple for now, let's refer to an employee's "comparison score" to be any of the 3 scores we defined above (attendance, assigned hours proportion, and seniority).
 
-Let {X<sub>1</sub>, X<sub>2</sub>} be 2 employees' comparison scores on the interval [0,1]. Without loss of generality suppose X1 > X2. Define Z = 5*(Xsub>21</sub> - Xsub>22</sub> ) as the difference between the scores with a coefficient of 5 in preparation for a composition with the sigmoid function. The coefficient is chosen by the manager, with a higher coefficient resulting in more skew towards the leader.Finally we utilize the function below to decide the probability of the leader being chosen. Greater differences in comparison scores yield a higher probability of the leader being chosen.
+Let {X<sub>1</sub>, X<sub>2</sub>} be 2 employees' comparison scores on the interval [0,1]. Without loss of generality suppose X1 > X2. Define Z = 5*(X<sub>1</sub> - X<sub>2</sub> ) as the difference between the scores with a coefficient of 5 in preparation for a composition with the sigmoid function. The coefficient is chosen by the manager, with a higher coefficient resulting in more skew towards the leader.Finally we utilize the function below to decide the probability of the leader being chosen. Greater differences in comparison scores yield a higher probability of the leader being chosen.
 
+![Img6](https://github.com/brananharrison/EmployeeScheduler/blob/master/img/sched6.png)
 
 
