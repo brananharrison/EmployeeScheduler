@@ -148,7 +148,7 @@ Now that our weighted probability function is built, we can decide which measure
 2. (Min: Assigned Hours Proportion) Employee is eligible, does not prefer off, has not requested off, and MaxD, MaxH >= 0
 3. (Min: Assigned Hours Proportion) Employee is eligible, prefers off, has not requested off, and MaxD, MaxH >= 0
 4. (Min: Assigned Hours Proportion) Employee is eligible, does not prefer shift/position, has not requested off, MaxD > 0, and MaxH > -5
-5. (Min: 70% Attendance, 30% Seniority) Employee is eligible, has requested off with request type (if possible), and MaxD, MaxH >= 0 <br><br>
+5. (Min: 70% Attendance, 30% Seniority) Employee is eligible, has requested off with request type (if possible), and MaxD, MaxH >= 0 <br><br><br>
 
 ## Results
 
@@ -158,7 +158,7 @@ Believe it or not, the 5 cases described above form a complete set of possible c
 
 The resulting Excel document is a sleek, readable schedule containing each employee's shifts separated by position.
 
-### Features of the algorithm:
+## Features of the algorithm:
 - Algorithm optimizes preferred shifts relative to attendance and seniority
 - Employees can update preferred shifts and hours at any time
 - Managers can edit staff needs for each individual shift/day combination
