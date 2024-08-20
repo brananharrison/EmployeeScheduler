@@ -5,7 +5,7 @@ On behalf of all variable-schedule employees and in protest of most mid-level ma
 [Link to tool](https://brananharrison.github.io/EmployeeScheduler/)
 
 1) Download the input file
-2) Add each employee and their availability/preferences, positions, shift info, and labor needs, time-off requests, and attendance.
+2) Add each employee and their availability/preferences, positions, shift info, labor needs, time-off requests, and attendance.
 3) Save as Input.xlsx and upload
 4) Polished schedule will download in 1-2 minutes
 
