@@ -30,13 +30,13 @@ jobs:
         git checkout -B master origin/master
 
     - name: Move the Generated File
-      run: mv Export.xlsx docs/Export.xlsx  # Move it to the 'docs' folder
+      run: mv Export.xlsx Export.xlsx  # Ensure this is moving to the root
 
     - name: Commit and Push the Generated File
       run: |
-        git add docs/Export.xlsx
-        git commit -m "Add generated Export.xlsx to docs folder"
+        git add Export.xlsx
+        git commit -m "Add generated Export.xlsx to root directory"
         git push origin master  # Push to the master branch
 
     - name: Verify file exists
-      run: ls -la docs/Export.xlsx
+      run: ls -la Export.xlsx
