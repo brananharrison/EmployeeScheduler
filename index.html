@@ -15,14 +15,13 @@
         }
         .container {
             display: flex;
-            flex-direction: column;
+            justify-content: space-between;
             align-items: center;
             width: 600px;
         }
         .button {
             text-align: center;
             cursor: pointer;
-            margin-bottom: 20px;
         }
         .button img {
             width: 100px;
@@ -44,6 +43,7 @@
             font-size: 16px;
             font-weight: bold;
             color: green;
+            text-align: center;
         }
     </style>
 </head>
@@ -52,8 +52,8 @@
         <div class="button">
             <a href="ScheduleInputData.xlsx" download>
                 <img src="https://img.icons8.com/color/144/000000/microsoft-excel-2019.png" alt="Download Excel">
-                <label>Download Input File</label>
             </a>
+            <label>Download Input File</label>
         </div>
         <div class="button">
             <label for="file-input" class="upload-icon">
@@ -62,8 +62,8 @@
             </label>
             <label>Upload Input, Run Algorithm, and Download</label>
         </div>
-        <div class="message" id="status-message"></div> <!-- Message area -->
     </div>
+    <div class="message" id="status-message"></div> <!-- Message area -->
 
     <script>
         document.getElementById('file-input').addEventListener('change', async function () {
