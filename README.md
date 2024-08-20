@@ -21,6 +21,7 @@ Within the Input Excel document, we find our Employees sheet containing data abo
 Most clients share the input file on Google Drive with all employees to let them change preferences as needed.
 
 
+
 The other 3 sheets contain data for the manager to fill out, most importantly, the **Position Matrix**. Notice each position name is spaced exactly 10 cells apart, with a similar pattern within each position. This allows Python to scrape the data into the algorithm, both for the number of positions and individual number of shifts for each position, giving the manager **full freedom in designing shifts and positions**.
 
 ![Img3](https://github.com/brananharrison/EmployeeScheduler/blob/master/img/sched3.png)
