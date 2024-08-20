@@ -1,0 +1,31 @@
+name: Upload Input File and Run Workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      file-content:
+        description: 'Base64 encoded content of Input.xlsx'
+        required: true
+
+jobs:
+  upload_input_file:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Decode and Upload Input.xlsx
+      run: |
+        echo ${{ github.event.inputs.file-content }} | base64 --decode > Input.xlsx
+        git add Input.xlsx
+        git commit -m "Upload Input.xlsx via GitHub Pages"
+        git push origin master
+
+    - name: Trigger Scheduling Algorithm
+      run: |
+        curl -X POST \
+          -H "Authorization: token ${{ secrets.GH_TOKEN }}" \
+          -H "Accept: application/vnd.github.v3+json" \
+          https://api.github.com/repos/brananharrison/EmployeeScheduler/actions/workflows/run-schedule.yml/dispatches \
+          -d '{"ref": "master"}'
