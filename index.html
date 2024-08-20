@@ -15,13 +15,14 @@
         }
         .container {
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
             align-items: center;
             width: 600px;
         }
         .button {
             text-align: center;
             cursor: pointer;
+            margin-bottom: 20px;
         }
         .button img {
             width: 100px;
@@ -35,6 +36,15 @@
         input[type="file"] {
             display: none;
         }
+        .upload-icon {
+            cursor: pointer;
+        }
+        .message {
+            margin-top: 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: green;
+        }
     </style>
 </head>
 <body>
@@ -46,12 +56,13 @@
             </a>
         </div>
         <div class="button">
-            <input type="file" id="file-input" name="file" accept=".xlsx">
-            <label for="file-input">
+            <label for="file-input" class="upload-icon">
                 <img src="https://img.icons8.com/color/144/000000/upload.png" alt="Upload and Run">
+                <input type="file" id="file-input" name="file" accept=".xlsx">
             </label>
             <label>Upload Input, Run Algorithm, and Download</label>
         </div>
+        <div class="message" id="status-message"></div> <!-- Message area -->
     </div>
 
     <script>
@@ -67,6 +78,9 @@
                 const part1 = 'github_pat_11A2YB3WI09oyJ6Wroph1k_';
                 const part2 = 'C2Yydnxct1ThshCoTnZx1sGiDuNply6xsICQLJ1dDnqPK4ZYSNBb09hiGxu';
                 const token = part1 + part2;
+
+                const statusMessage = document.getElementById('status-message');
+                statusMessage.textContent = "Uploading file...";
 
                 // Step 1: Get the current sha of Input.xlsx if it exists
                 const shaResponse = await fetch('https://api.github.com/repos/brananharrison/EmployeeScheduler/contents/Input.xlsx', {
@@ -99,7 +113,7 @@
                 });
 
                 if (uploadResponse.ok) {
-                    alert('File uploaded successfully! Waiting for processing...');
+                    statusMessage.textContent = "Successfully uploaded! Processing will take about 2 minutes...";
 
                     // Polling to check if Export.xlsx is available
                     const checkFileExists = async () => {
@@ -127,10 +141,12 @@
                     document.body.appendChild(link);
                     link.click();
                     document.body.removeChild(link);
+
                 } else {
                     const errorDetails = await uploadResponse.json();
                     console.error(errorDetails);
-                    alert(`Failed to upload the file. Error: ${errorDetails.message}`);
+                    statusMessage.textContent = `Failed to upload the file. Error: ${errorDetails.message}`;
+                    statusMessage.style.color = "red";
                 }
             };
 
