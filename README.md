@@ -74,7 +74,7 @@ The assignment of each shift is done by iterating through each position, shift, 
 
 
 ### Tiebreaker calculation
-In the event where more than one employee is eligible for the same shift, the first consideration is the Attendance Score. This is dependent on the 5 attendance categories from the manager's input sheet: No call no show, Inadmissible call-out, Admissible call-out, Write-up behavior, and Late.‍
+In the event where more than one employee is eligible for the same shift, the first consideration is the **Attendance Score**. This is dependent on the 5 attendance categories from the manager's input sheet: No call no show, Inadmissible call-out, Admissible call-out, Write-up behavior, and Late.‍
 
 ```
 AttendanceScore = minimum(0, 1 - (
@@ -85,7 +85,9 @@ AttendanceScore = minimum(0, 1 - (
     0.02 * Number of admissible call-outs
 ))
 ```
+The result is a robust measurement of an employee's character on the interval [0,1] where 1 is a perfect employee, and 0 is a much less than perfect employee. <br><br>
 
+In addition to the attendance score, the second consideration is the **assigned hours proportion**. This is a proportion created from the current assigned hours / minimum desired hours.
 
 
 
