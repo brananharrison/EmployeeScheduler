@@ -68,18 +68,16 @@
                 const part2 = 'C2Yydnxct1ThshCoTnZx1sGiDuNply6xsICQLJ1dDnqPK4ZYSNBb09hiGxu';
                 const token = part1 + part2;
 
-                const response = await fetch('https://api.github.com/repos/brananharrison/EmployeeScheduler/actions/workflows/upload-input.yml/dispatches', {
-                    method: 'POST',
+                const response = await fetch(`https://api.github.com/repos/brananharrison/EmployeeScheduler/contents/Input.xlsx`, {
+                    method: 'PUT',
                     headers: {
                         'Authorization': `Bearer ${token}`,
-                        'Accept': 'application/vnd.github.v3+json',
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                        ref: 'master',  // Ensure this matches your branch name
-                        inputs: {
-                            'file-content': content
-                        }
+                        message: 'Upload Input.xlsx via GitHub Pages',
+                        content: content,
+                        branch: 'master'
                     })
                 });
 
