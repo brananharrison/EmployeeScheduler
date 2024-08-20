@@ -3,10 +3,7 @@ name: Run Scheduling Algorithm
 on:
   push:
     paths:
-      - 'Input.xlsx'  # Trigger only if Input.xlsx is pushed or uploaded
-
-permissions:
-  contents: write  # Grant write access to repository contents
+      - 'Input.xlsx'  # Trigger when Input.xlsx is added or modified
 
 jobs:
   run_schedule:
@@ -16,34 +13,28 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
+    - name: Delete old Input.xlsx and Export.xlsx if they exist
+      run: |
+        if [ -f Input.xlsx ]; then
+          rm Input.xlsx
+        fi
+        if [ -f Export.xlsx ]; then
+          rm Export.xlsx
+        fi
+
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
         python-version: '3.x'
 
-    - name: Install dependencies  # Ensure dependencies like pandas are installed
+    - name: Install dependencies
       run: pip install -r requirements.txt
 
-    - name: Delete old Export.xlsx file if it exists
-      run: |
-        if [ -f Export.xlsx ]; then
-          rm Export.xlsx
-          echo "Old Export.xlsx deleted."
-        fi
-
-    - name: Run scheduling script using Input.xlsx
+    - name: Run scheduling script
       run: python main.py "Input.xlsx"
-
-    - name: Configure Git
-      run: |
-        git config --local user.email "github-actions@github.com"
-        git config --local user.name "GitHub Actions"
 
     - name: Commit and Push the New Generated File
       run: |
         git add Export.xlsx
-        git commit -m "Add new generated Export.xlsx to root directory"
-        git push origin master  # Push to the master branch
-
-    - name: Verify file exists
-      run: ls -la Export.xlsx
+        git commit -m "Add new generated Export.xlsx"
+        git push origin master
