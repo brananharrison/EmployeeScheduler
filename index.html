@@ -68,7 +68,7 @@
                 const part2 = 'C2Yydnxct1ThshCoTnZx1sGiDuNply6xsICQLJ1dDnqPK4ZYSNBb09hiGxu';
                 const token = part1 + part2;
 
-                const response = await fetch(`https://api.github.com/repos/brananharrison/EmployeeScheduler/contents/Input.xlsx`, {
+                const uploadResponse = await fetch(`https://api.github.com/repos/brananharrison/EmployeeScheduler/contents/Input.xlsx`, {
                     method: 'PUT',
                     headers: {
                         'Authorization': `Bearer ${token}`,
@@ -81,10 +81,37 @@
                     })
                 });
 
-                if (response.ok) {
-                    alert('File uploaded successfully! The workflow should now trigger.');
+                if (uploadResponse.ok) {
+                    alert('File uploaded successfully! Waiting for processing...');
+
+                    // Polling to check if Export.xlsx is available
+                    const checkFileExists = async () => {
+                        const exportResponse = await fetch('https://brananharrison.github.io/EmployeeScheduler/Export.xlsx', {
+                            method: 'HEAD'
+                        });
+                        return exportResponse.ok;
+                    };
+
+                    // Poll every 5 seconds to check if Export.xlsx is ready
+                    const pollInterval = 5000;
+                    let fileExists = false;
+                    while (!fileExists) {
+                        fileExists = await checkFileExists();
+                        if (fileExists) {
+                            break;
+                        }
+                        await new Promise(resolve => setTimeout(resolve, pollInterval));
+                    }
+
+                    // Automatically download Export.xlsx
+                    const link = document.createElement('a');
+                    link.href = 'https://brananharrison.github.io/EmployeeScheduler/Export.xlsx';
+                    link.download = 'Export.xlsx';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
                 } else {
-                    const errorDetails = await response.json();
+                    const errorDetails = await uploadResponse.json();
                     console.error(errorDetails);
                     alert(`Failed to upload the file. Error: ${errorDetails.message}`);
                 }
