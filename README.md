@@ -26,11 +26,13 @@ The other 3 sheets contain data for the manager to fill out, most importantly, t
 ![Img3](https://github.com/brananharrison/EmployeeScheduler/blob/master/img/sched3.png)
 
 <br><br>
+Time-off requests and attendance logs are inputted as well, and contribute to the algorithm.
+
 ![Img4](https://github.com/brananharrison/EmployeeScheduler/blob/master/img/sched4.png)
 
 ![Img5](https://github.com/brananharrison/EmployeeScheduler/blob/master/img/sched5.png)
 
-Time-off requests and attendance logs are inputted as well, and contribute to the algorithm. <br><br>
+<br><br>
 
 
 ## The Algorithm
