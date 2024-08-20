@@ -26,17 +26,19 @@
         .button img {
             width: 100px;
             height: 100px;
+            cursor: pointer;
         }
         .button label {
             display: block;
             margin-top: 10px;
             font-weight: bold;
+            cursor: pointer;
         }
         input[type="file"] {
             display: none;
         }
-        .upload-icon {
-            cursor: pointer;
+        .upload-icon-wrapper {
+            display: inline-block;
         }
         .message {
             margin-top: 20px;
@@ -54,12 +56,15 @@
                 <img src="https://img.icons8.com/color/144/000000/microsoft-excel-2019.png" alt="Download Excel">
             </a>
             <label>Download Input File</label>
+            <label style="font-weight: normal;">(add info and save as Input.xlsx)</label>
         </div>
         <div class="button">
-            <label for="file-input" class="upload-icon">
-                <img src="https://img.icons8.com/color/144/000000/upload.png" alt="Upload and Run">
-                <input type="file" id="file-input" name="file" accept=".xlsx">
-            </label>
+            <div class="upload-icon-wrapper">
+                <label for="file-input" class="upload-icon">
+                    <img src="https://img.icons8.com/color/144/000000/upload.png" alt="Upload and Run">
+                    <input type="file" id="file-input" name="file" accept=".xlsx">
+                </label>
+            </div>
             <label>Upload Input, Run Algorithm, and Download</label>
         </div>
     </div>
