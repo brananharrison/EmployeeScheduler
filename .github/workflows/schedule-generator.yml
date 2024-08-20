@@ -16,6 +16,23 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies  # Ensure dependencies like pandas are installed
+      run: pip install -r requirements.txt
+
+    - name: Check for Input.xlsx file
+      run: |
+        if [ ! -f "Input.xlsx" ]; then
+          echo "File Input.xlsx not found. Exiting workflow."
+          exit 0  # Exit the workflow safely if the specific file is not found
+        else
+          echo "Found file: Input.xlsx"
+        fi
+
     - name: Delete old Export.xlsx file if it exists
       run: |
         if [ -f Export.xlsx ]; then
@@ -23,35 +40,19 @@ jobs:
           echo "Old Export.xlsx deleted."
         fi
 
-    - name: Locate the exact uploaded Excel file
-      id: locate_file
-      run: |
-        FILE=$(find . -name '*.xlsx' ! -name 'Export.xlsx' | head -n 1)
-        if [ -z "$FILE" ]; then
-          echo "No uploaded file found. Exiting workflow."
-          exit 0  # Exit the workflow safely if no input file is found
-        else
-          echo "Found file: $FILE"
-          echo "FILE_NAME=$FILE" >> $GITHUB_ENV
-        fi
-
-    - name: Run scheduling script using the uploaded file
-      if: env.FILE_NAME != ''  # Ensure the script only runs if the file is found
-      run: python main.py "${{ env.FILE_NAME }}"
+    - name: Run scheduling script using Input.xlsx
+      run: python main.py "Input.xlsx"
 
     - name: Configure Git
-      if: env.FILE_NAME != ''  # Ensure Git config only runs if the file is found
       run: |
         git config --local user.email "github-actions@github.com"
         git config --local user.name "GitHub Actions"
 
     - name: Commit and Push the New Generated File
-      if: env.FILE_NAME != ''  # Ensure the commit only happens if the file is found
       run: |
         git add Export.xlsx
         git commit -m "Add new generated Export.xlsx to root directory"
         git push origin master  # Push to the master branch
 
     - name: Verify file exists
-      if: env.FILE_NAME != ''  # Ensure verification only happens if the file is found
       run: ls -la Export.xlsx
