@@ -44,7 +44,7 @@ Each employee will have a variety of variables associated with a given shift:
 **Prefers Position**: the employee prefers that position for that day of the week <br>
 **Prefers Shift**: the employee prefers that shift for that day of the week <br>
 **Prefers OFF**: the employee prefers not to be scheduled for that day of the week <br>
-**Requested Off**: the assignment of that shift would interfere with a TO request <br>
+**Requested Off**: the assignment of that shift would interfere with a TO request
 ‍
 ### Numerical variables:
 **Max Hours Difference (MaxH)**: the difference between an employee's maximum desired hours and their current scheduled hours calculated INCLUDING the given shift <br>
