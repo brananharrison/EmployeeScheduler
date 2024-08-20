@@ -68,6 +68,22 @@
                 const part2 = 'C2Yydnxct1ThshCoTnZx1sGiDuNply6xsICQLJ1dDnqPK4ZYSNBb09hiGxu';
                 const token = part1 + part2;
 
+                // Step 1: Get the current sha of Input.xlsx if it exists
+                const shaResponse = await fetch('https://api.github.com/repos/brananharrison/EmployeeScheduler/contents/Input.xlsx', {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Accept': 'application/vnd.github.v3+json',
+                    }
+                });
+
+                let sha = null;
+                if (shaResponse.ok) {
+                    const shaData = await shaResponse.json();
+                    sha = shaData.sha; // Get the sha of the existing file
+                }
+
+                // Step 2: Upload the new Input.xlsx with the sha (if exists)
                 const uploadResponse = await fetch(`https://api.github.com/repos/brananharrison/EmployeeScheduler/contents/Input.xlsx`, {
                     method: 'PUT',
                     headers: {
@@ -77,6 +93,7 @@
                     body: JSON.stringify({
                         message: 'Upload Input.xlsx via GitHub Pages',
                         content: content,
+                        sha: sha, // Include the sha of the existing file if it exists
                         branch: 'master'
                     })
                 });
