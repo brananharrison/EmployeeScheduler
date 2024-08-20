@@ -8,12 +8,10 @@
         body {
             font-family: Arial, sans-serif;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
             background-color: #f0f0f0;
-            margin: 0;
         }
         .container {
             display: flex;
@@ -55,12 +53,11 @@
             cursor: pointer;
         }
         .message {
-            margin-top: 50px; /* Increased margin to create more space */
+            margin-top: 20px;
             font-size: 16px;
             font-weight: bold;
             color: green;
             text-align: center;
-            width: 100%; /* Take up the full width */
         }
     </style>
 </head>
@@ -72,16 +69,15 @@
             </a>
             <label>Download Input File</label>
         </div>
-    <div class="button" style="margin-right: 40px;">
-        <label for="file-input" class="upload-icon">
-            <img src="https://img.icons8.com/color/144/000000/upload.png" alt="Upload and Run">
-            <input type="file" id="file-input" name="file" accept=".xlsx">
-        </label>
-        <label style="display: block; width: 200px; text-align: center; margin: 0 auto;">
-            Upload Input.xlsx, run algorithm, and download schedule.
-        </label>
+        <div class="button">
+            <label for="file-input" class="upload-icon">
+                <img src="https://img.icons8.com/color/144/000000/upload.png" alt="Upload and Run">
+                <input type="file" id="file-input" name="file" accept=".xlsx">
+            </label>
+            <label>Upload Input, Run Algorithm, and Download</label>
+        </div>
     </div>
-    
+</body>
     <div class="message" id="status-message"></div> <!-- Message area -->
 
     <script>
