@@ -2,8 +2,8 @@ name: Run Scheduling Algorithm
 
 on:
   push:
-    branches:
-      - master  # Trigger on pushes to the master branch
+    paths:
+      - 'Input.xlsx'  # Trigger only if Input.xlsx is pushed or uploaded
 
 permissions:
   contents: write  # Grant write access to repository contents
@@ -24,18 +24,7 @@ jobs:
     - name: Install dependencies  # Ensure dependencies like pandas are installed
       run: pip install -r requirements.txt
 
-    - name: Check for Input.xlsx file
-      id: check_input
-      run: |
-        if [ ! -f "Input.xlsx" ]; then
-          echo "File Input.xlsx not found. Exiting workflow."
-          exit 0  # Exit the workflow gracefully if the specific file is not found
-        else
-          echo "Found file: Input.xlsx"
-        fi
-
     - name: Delete old Export.xlsx file if it exists
-      if: steps.check_input.outputs.FILE_FOUND == 'true'
       run: |
         if [ -f Export.xlsx ]; then
           rm Export.xlsx
@@ -43,22 +32,18 @@ jobs:
         fi
 
     - name: Run scheduling script using Input.xlsx
-      if: steps.check_input.outputs.FILE_FOUND == 'true'
       run: python main.py "Input.xlsx"
 
     - name: Configure Git
-      if: steps.check_input.outputs.FILE_FOUND == 'true'
       run: |
         git config --local user.email "github-actions@github.com"
         git config --local user.name "GitHub Actions"
 
     - name: Commit and Push the New Generated File
-      if: steps.check_input.outputs.FILE_FOUND == 'true'
       run: |
         git add Export.xlsx
         git commit -m "Add new generated Export.xlsx to root directory"
         git push origin master  # Push to the master branch
 
     - name: Verify file exists
-      if: steps.check_input.outputs.FILE_FOUND == 'true'
       run: ls -la Export.xlsx
