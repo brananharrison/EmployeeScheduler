@@ -78,11 +78,11 @@ In the event where more than one employee is eligible for the same shift, the fi
 
 ```
 AttendanceScore = minimum(0, 1 - (
-0.6 * Number of no call no shows
-0.2 * Number of inadmissible call-outs
-0.15 * Number of write-up behaviors
-0.03 * Number of late
-0.02 * Number of admissible call-outs
+    0.6 * Number of no call no shows
+    0.2 * Number of inadmissible call-outs
+    0.15 * Number of write-up behaviors
+    0.03 * Number of late
+    0.02 * Number of admissible call-outs
 ))
 ```
 
