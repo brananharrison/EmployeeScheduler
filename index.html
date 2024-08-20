@@ -8,10 +8,12 @@
         body {
             font-family: Arial, sans-serif;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
             background-color: #f0f0f0;
+            margin: 0;
         }
         .container {
             display: flex;
@@ -53,11 +55,12 @@
             cursor: pointer;
         }
         .message {
-            margin-top: 20px;
+            margin-top: 50px; /* Increased margin to create more space */
             font-size: 16px;
             font-weight: bold;
             color: green;
             text-align: center;
+            width: 100%; /* Take up the full width */
         }
     </style>
 </head>
@@ -77,7 +80,7 @@
             <label>Upload Input.xlsx and build schedule.</label>
         </div>
     </div>
-</body>
+    
     <div class="message" id="status-message"></div> <!-- Message area -->
 
     <script>
