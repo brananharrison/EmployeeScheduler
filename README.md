@@ -123,15 +123,15 @@ Let {X<sub>1</sub>, X<sub>2</sub>} be 2 employees' comparison scores on the inte
 
 ![Img6](https://github.com/brananharrison/EmployeeScheduler/blob/master/img/sched6.png)
 
-For example: if $X_1 = 0.9$ and $X_2 = 0.4$, then:
+For example: if $X_1 = 0.9$ and $X_2 = 0.4$, then Z = 5(0.9 - 0.4) = 2.25:
 
-$$\theta(z) = \frac{1}{1 + e^{-2.25}} = 0.9046$$
+$$\theta(Z) = \frac{1}{1 + e^{-2.25}} = 0.9046$$
 
 implies the favored employee has a 90% chance of being selected. <br><br>
 
-Another example: if $X_1 = 0.5$ and $X_2 = 0.3$, then:
+Another example: if $X_1 = 0.5$ and $X_2 = 0.3$, then Z = 5(0.5 - 0.3) = 0.75:
 
-$$\theta(z) = \frac{1}{1 + e^{-0.75}} = 0.6792$$
+$$\theta(Z) = \frac{1}{1 + e^{-0.75}} = 0.6792$$
 
 implies the favored employee has a 68% chance of being selected.  <br><br><br>
 
