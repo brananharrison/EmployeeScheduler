@@ -25,6 +25,7 @@
             border-radius: 8px;
             vertical-align: middle;
             text-align: center;
+            width: 250px; /* Set width to control wrapping */
         }
         .button img {
             width: 100px;
@@ -45,6 +46,7 @@
             margin: 0;
             font-weight: bold;
             text-align: center;
+            width: 100%; /* Ensures the text wraps within the set width */
         }
         input[type="file"] {
             display: none;
@@ -74,10 +76,11 @@
                 <img src="https://img.icons8.com/color/144/000000/upload.png" alt="Upload and Run">
                 <input type="file" id="file-input" name="file" accept=".xlsx">
             </label>
-            <label>Upload Input, Run Algorithm, and Download</label>
+            <label>Upload Input.xlsx, run algorithm,<br>and download schedule.</label>
         </div>
     </div>
 </body>
+
     <div class="message" id="status-message"></div> <!-- Message area -->
 
     <script>
