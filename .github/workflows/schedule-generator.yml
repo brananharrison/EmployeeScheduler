@@ -24,6 +24,11 @@ jobs:
     - name: Run scheduling script
       run: python main.py "Input.xlsx"
 
+    - name: Configure Git (local)
+      run: |
+        git config user.email "github-actions@example.com"
+        git config user.name "GitHub Actions"
+
     - name: Commit and Push the New Generated File
       run: |
         git add Export.xlsx
