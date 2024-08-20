@@ -24,6 +24,13 @@ jobs:
     - name: Install dependencies
       run: pip install -r requirements.txt
 
+    - name: Delete old Export.xlsx file if it exists
+      run: |
+        if [ -f Export.xlsx ]; then
+          rm Export.xlsx
+          echo "Old Export.xlsx deleted."
+        fi
+
     - name: Locate the exact uploaded Excel file
       id: locate_file
       run: |
@@ -39,12 +46,11 @@ jobs:
         git config --local user.email "github-actions@github.com"
         git config --local user.name "GitHub Actions"
 
-    - name: Commit and Push the Generated File
+    - name: Commit and Push the New Generated File
       run: |
         git add Export.xlsx
-        git commit -m "Add generated Export.xlsx to root directory"
+        git commit -m "Add new generated Export.xlsx to root directory"
         git push origin master  # Push to the master branch
 
     - name: Verify file exists
       run: ls -la Export.xlsx
-      
