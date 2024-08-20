@@ -20,25 +20,33 @@
             width: 600px;
         }
         .button {
-            text-align: center;
+            display: inline-block;
             cursor: pointer;
+            border-radius: 8px;
         }
         .button img {
             width: 100px;
             height: 100px;
-            cursor: pointer;
+            display: block;
+            margin: 0 auto;
+            transition: background-color 0.3s ease, border-radius 0.3s ease;
+            border-radius: 8px;
+        }
+        .button:hover img {
+            background-color: #ccffcc;
+            border-radius: 12px;
         }
         .button label {
             display: block;
             margin-top: 10px;
             font-weight: bold;
-            cursor: pointer;
+            text-align: center;
         }
         input[type="file"] {
             display: none;
         }
-        .upload-icon-wrapper {
-            display: inline-block;
+        .upload-icon {
+            cursor: pointer;
         }
         .message {
             margin-top: 20px;
@@ -56,18 +64,16 @@
                 <img src="https://img.icons8.com/color/144/000000/microsoft-excel-2019.png" alt="Download Excel">
             </a>
             <label>Download Input File</label>
-            <label style="font-weight: normal;">(add info and save as Input.xlsx)</label>
         </div>
         <div class="button">
-            <div class="upload-icon-wrapper">
-                <label for="file-input" class="upload-icon">
-                    <img src="https://img.icons8.com/color/144/000000/upload.png" alt="Upload and Run">
-                    <input type="file" id="file-input" name="file" accept=".xlsx">
-                </label>
-            </div>
+            <label for="file-input" class="upload-icon">
+                <img src="https://img.icons8.com/color/144/000000/upload.png" alt="Upload and Run">
+                <input type="file" id="file-input" name="file" accept=".xlsx">
+            </label>
             <label>Upload Input, Run Algorithm, and Download</label>
         </div>
     </div>
+</body>
     <div class="message" id="status-message"></div> <!-- Message area -->
 
     <script>
