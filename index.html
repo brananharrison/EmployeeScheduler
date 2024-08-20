@@ -84,9 +84,9 @@
                     setTimeout(() => {
                         document.getElementById('status').textContent = 'Processing complete. Downloading...';
 
-                        // Simulate download
+                        // Download the file
                         const link = document.createElement('a');
-                        link.href = 'path-to-your-generated-export.xlsx'; // Replace with the actual URL to the generated file
+                        link.href = 'https://brananharrison.github.io/EmployeeScheduler/Export.xlsx';  // Ensure this path is correct
                         link.download = 'Export.xlsx';
                         link.click();
 
